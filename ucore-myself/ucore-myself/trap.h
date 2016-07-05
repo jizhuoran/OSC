@@ -1,14 +1,15 @@
 //
-//  bootasm.h
+//  trap.h
 //  ucore-myself
 //
 //  Created by jizhuoran on 16/7/5.
 //  Copyright © 2016年 jizhuoran. All rights reserved.
 //
 
-#ifndef bootasm_h
-#define bootasm_h
+#ifndef trap_h
+#define trap_h
 
-#include <stdio.h>
 
-#endif /* bootasm_h */
+void idt_init(void);
+
+#endif /* trap_h */

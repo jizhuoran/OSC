@@ -1,8 +1,8 @@
-#include <defs.h>
-#include <x86.h>
-#include <error.h>
-#include <stdio.h>
-#include <string.h>
+#include "defs.h"
+#include "x86.h"
+#include "error.h"
+#include "stdio.h"
+#include "string.h"
 
 /* *
  * Space or zero padding and a field width are supported for the numeric
