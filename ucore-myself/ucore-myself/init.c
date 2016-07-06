@@ -13,7 +13,7 @@
 
 int kern_init(void) {
     extern char edata[], end[];
-    memset(edata, 0, end-edata);
+    memset(edata, 0, end - edata);
     
     cons_init(); //初始化console
     

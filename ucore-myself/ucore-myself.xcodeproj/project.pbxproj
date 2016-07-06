@@ -13,6 +13,10 @@
 		FB406B751D2BA7A0005CBC4D /* picirq.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B6F1D2BA7A0005CBC4D /* picirq.c */; };
 		FB406B791D2BA82F005CBC4D /* pmm.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B771D2BA82F005CBC4D /* pmm.c */; };
 		FB406B7D1D2BA8DA005CBC4D /* trap.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B7B1D2BA8DA005CBC4D /* trap.c */; };
+		FB406B841D2BD720005CBC4D /* default_pmm.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B821D2BD720005CBC4D /* default_pmm.c */; };
+		FB406B8E1D2BEE75005CBC4D /* kdebug.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B881D2BEE75005CBC4D /* kdebug.c */; };
+		FB406B8F1D2BEE75005CBC4D /* kmonitor.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B8A1D2BEE75005CBC4D /* kmonitor.c */; };
+		FB406B901D2BEE75005CBC4D /* panic.c in Sources */ = {isa = PBXBuildFile; fileRef = FB406B8C1D2BEE75005CBC4D /* panic.c */; };
 		FBC0B23D1D2B409600F5C6FE /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = FBC0B23C1D2B409600F5C6FE /* Makefile */; };
 		FBC0B2481D2B436C00F5C6FE /* bootasm.S in Sources */ = {isa = PBXBuildFile; fileRef = FBC0B2471D2B436C00F5C6FE /* bootasm.S */; };
 		FBC0B24B1D2B8CBA00F5C6FE /* bootasm.c in Sources */ = {isa = PBXBuildFile; fileRef = FBC0B2491D2B8CBA00F5C6FE /* bootasm.c */; };
@@ -49,6 +53,16 @@
 		FB406B7C1D2BA8DA005CBC4D /* trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trap.h; sourceTree = "<group>"; };
 		FB406B7E1D2BAB2D005CBC4D /* memlayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = memlayout.h; sourceTree = "<group>"; };
 		FB406B801D2BABA9005CBC4D /* sync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sync.h; sourceTree = "<group>"; };
+		FB406B811D2BB9A6005CBC4D /* mmu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mmu.h; sourceTree = "<group>"; };
+		FB406B821D2BD720005CBC4D /* default_pmm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = default_pmm.c; sourceTree = "<group>"; };
+		FB406B831D2BD720005CBC4D /* default_pmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = default_pmm.h; sourceTree = "<group>"; };
+		FB406B871D2BEE75005CBC4D /* assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
+		FB406B881D2BEE75005CBC4D /* kdebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kdebug.c; sourceTree = "<group>"; };
+		FB406B891D2BEE75005CBC4D /* kdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kdebug.h; sourceTree = "<group>"; };
+		FB406B8A1D2BEE75005CBC4D /* kmonitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmonitor.c; sourceTree = "<group>"; };
+		FB406B8B1D2BEE75005CBC4D /* kmonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmonitor.h; sourceTree = "<group>"; };
+		FB406B8C1D2BEE75005CBC4D /* panic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = panic.c; sourceTree = "<group>"; };
+		FB406B8D1D2BEE75005CBC4D /* stab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stab.h; sourceTree = "<group>"; };
 		FBC0B2321D2B400B00F5C6FE /* ucore-myself */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ucore-myself"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC0B23C1D2B409600F5C6FE /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		FBC0B2441D2B429700F5C6FE /* asm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asm.h; sourceTree = "<group>"; };
@@ -106,9 +120,12 @@
 		FB406B761D2BA7FF005CBC4D /* mm */ = {
 			isa = PBXGroup;
 			children = (
-				FB406B771D2BA82F005CBC4D /* pmm.c */,
 				FB406B781D2BA82F005CBC4D /* pmm.h */,
 				FB406B7E1D2BAB2D005CBC4D /* memlayout.h */,
+				FB406B771D2BA82F005CBC4D /* pmm.c */,
+				FB406B811D2BB9A6005CBC4D /* mmu.h */,
+				FB406B821D2BD720005CBC4D /* default_pmm.c */,
+				FB406B831D2BD720005CBC4D /* default_pmm.h */,
 			);
 			name = mm;
 			sourceTree = "<group>";
@@ -128,6 +145,20 @@
 				FB406B801D2BABA9005CBC4D /* sync.h */,
 			);
 			name = sync;
+			sourceTree = "<group>";
+		};
+		FB406B861D2BEE5B005CBC4D /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				FB406B871D2BEE75005CBC4D /* assert.h */,
+				FB406B881D2BEE75005CBC4D /* kdebug.c */,
+				FB406B891D2BEE75005CBC4D /* kdebug.h */,
+				FB406B8A1D2BEE75005CBC4D /* kmonitor.c */,
+				FB406B8B1D2BEE75005CBC4D /* kmonitor.h */,
+				FB406B8C1D2BEE75005CBC4D /* panic.c */,
+				FB406B8D1D2BEE75005CBC4D /* stab.h */,
+			);
+			name = debug;
 			sourceTree = "<group>";
 		};
 		FBC0B2291D2B400B00F5C6FE = {
@@ -189,6 +220,7 @@
 		FBC0B2421D2B40DF00F5C6FE /* kern */ = {
 			isa = PBXGroup;
 			children = (
+				FB406B861D2BEE5B005CBC4D /* debug */,
 				FB406B7F1D2BAB98005CBC4D /* sync */,
 				FB406B7A1D2BA8CF005CBC4D /* trap */,
 				FB406B761D2BA7FF005CBC4D /* mm */,
@@ -264,11 +296,15 @@
 				FB406B7D1D2BA8DA005CBC4D /* trap.c in Sources */,
 				FB406B791D2BA82F005CBC4D /* pmm.c in Sources */,
 				FB406B741D2BA7A0005CBC4D /* intr.c in Sources */,
+				FB406B901D2BEE75005CBC4D /* panic.c in Sources */,
 				FBC0B23D1D2B409600F5C6FE /* Makefile in Sources */,
 				FBC0B2481D2B436C00F5C6FE /* bootasm.S in Sources */,
 				FBC0B24B1D2B8CBA00F5C6FE /* bootasm.c in Sources */,
 				FB406B711D2BA7A0005CBC4D /* clock.c in Sources */,
+				FB406B8E1D2BEE75005CBC4D /* kdebug.c in Sources */,
+				FB406B841D2BD720005CBC4D /* default_pmm.c in Sources */,
 				FBC0B25B1D2BA3C300F5C6FE /* init.c in Sources */,
+				FB406B8F1D2BEE75005CBC4D /* kmonitor.c in Sources */,
 				FB406B721D2BA7A0005CBC4D /* console.c in Sources */,
 				FBC0B2571D2B8E3C00F5C6FE /* printfmt.c in Sources */,
 				FB406B751D2BA7A0005CBC4D /* picirq.c in Sources */,
