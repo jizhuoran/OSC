@@ -9,6 +9,28 @@
 #ifndef memlayout_h
 #define memlayout_h
 
+/* global segment number */
+#define SEG_KTEXT   1
+#define SEG_KDATA   2
+#define SEG_UTEXT   3
+#define SEG_UDATA   4
+#define SEG_TSS     5
+
+/* global descrptor numbers */
+#define GD_KTEXT    ((SEG_KTEXT) << 3)      // kernel text
+#define GD_KDATA    ((SEG_KDATA) << 3)      // kernel data
+#define GD_UTEXT    ((SEG_UTEXT) << 3)      // user text
+#define GD_UDATA    ((SEG_UDATA) << 3)      // user data
+#define GD_TSS      ((SEG_TSS) << 3)        // task segment selector
+
+#define DPL_KERNEL  (0)
+#define DPL_USER    (3)
+
+#define KERNEL_CS   ((GD_KTEXT) | DPL_KERNEL)
+#define KERNEL_DS   ((GD_KDATA) | DPL_KERNEL)
+#define USER_CS     ((GD_UTEXT) | DPL_USER)
+#define USER_DS     ((GD_UDATA) | DPL_USER)
+
 
 /* *
  * Virtual memory map:                                          Permissions
@@ -48,6 +70,8 @@
 #ifndef __ASSEMBLER__
 
 #include "list.h"
+#include "atomic.h"
+
 typedef uintptr_t pte_t;
 typedef uintptr_t pde_t;
 
@@ -74,8 +98,8 @@ struct Page {
 
 
 
-#define PG_reserved                 0       // the page descriptor is reserved for kernel or unusable
-#define PG_property                 1       // the member 'property' is valid
+#define PG_reserved                 0       //第0个bit
+#define PG_property                 1       //第1个bit
 
 #define SetPageReserved(page)       set_bit(PG_reserved, &((page)->flags))
 #define ClearPageReserved(page)     clear_bit(PG_reserved, &((page)->flags))
@@ -85,6 +109,9 @@ struct Page {
 #define PageProperty(page)          test_bit(PG_property, &((page)->flags))
 
 
+// convert list entry to page
+#define le2page(le, member)                 \
+to_struct((le), struct Page, member)
 
 
 typedef struct {

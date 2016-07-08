@@ -24,7 +24,8 @@ struct pmm_manager {
 
 void pmm_init (void);
 
-
+#define alloc_page() alloc_pages(1) //分配一个页
+#define free_page(page) free_pages(page, 1) //释放一个页
 
 /* *
  取一个kernel的virtual address，返回对应的物理地址
@@ -58,8 +59,18 @@ extern struct Page *pages;
 extern size_t npage;
 
 static inline ppn_t page2ppn(struct Page *page) {
-    return page - pages;   //这个函数返回page在页表里的index
+    return page - pages;
+    //这个函数返回page在页表里的index,page表里的规矩是，比如a[i] = j, i 就是虚拟地址，j就是对应的物理地址
 }
+
+static inline struct Page *pa2page(uintptr_t pa) {
+    //物理地址转化为页地址
+    if (PPN(pa) >= npage) {
+        panic("pa2page called with invalid pa");
+    }
+    return &pages[PPN(pa)];
+}
+
 
 static inline uintptr_t page2pa(struct Page *page) {
     return page2ppn(page) << PGSHIFT;
@@ -67,10 +78,19 @@ static inline uintptr_t page2pa(struct Page *page) {
     //操作之后相当于找到了这个页index所指向的页的第一个位置
 }
 
-
 static inline void *page2kva(struct Page *page) {
     return KADDR(page2pa(page)); //根据上面返回的位置，找到对应的kernel virtual address
 }
 
+static inline struct Page *kva2page(void *kva) {
+    return pa2page(PADDR(kva));
+    //
+}
+
+static inline void set_page_ref(struct Page *page, int val) {
+    page->ref = val;
+}
+
+extern char bootstack[], bootstacktop[];
 
 #endif /* pmm_h */
