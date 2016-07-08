@@ -36,6 +36,8 @@ int main(int argc, char const *argv[])
     FIFO(frames, pattern);
     LRU(frames, pattern);
     OPT(frames, pattern);
+    delete[] frames;
+    delete[] pattern;
     return 0;
 }
 
@@ -134,6 +136,7 @@ int find_frame_OPT(int index, int *frames, int *pattern) {
             return find_element(pattern[i], frames);
         }
     }
+    delete[] buffer;
     return find_element(pattern[i-1], frames);
     
 }
