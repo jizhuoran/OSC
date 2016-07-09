@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
     }
     fp=fopen("BACKING_STORE.bin","r+");
     uint16_t temp;
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 1000; ++i) {
         cin>>temp;
         la2pa(temp);
     }
@@ -40,7 +40,7 @@ void la2pa(uint16_t la) {
         }
         delete[] temp;
     }
-    cout<<"Virtual address: "<<la<<"Physical address: "<<(page_table[pte] << 8) + offset <<" Value: "<<frames[ page_table[pte] ][offset]<<endl;
+    cout<<"Virtual address: "<<la<<" Physical address: "<<(page_table[pte] << 8) + offset <<" Value: "<<frames[ page_table[pte] ][offset]<<endl;
 }
 
 int find_free_frames() {
